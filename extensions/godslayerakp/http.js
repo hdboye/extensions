@@ -423,6 +423,17 @@
           },
           "---",
           {
+            opcode: "encodeURIcomp",
+            blockType: BlockType.REPORTER,
+            arguments: {
+              urii: {
+                type: ArgumentType.STRING,
+                defaultValue: "Hello, World!",
+              },
+            },
+            text: "encode URI component [urii]",
+          },
+          {
             opcode: "sendRequest",
             blockType: BlockType.COMMAND,
             arguments: {
@@ -433,6 +444,7 @@
             },
             text: "send request to [url]",
           },
+          
           {
             func: "showExtra",
             blockType: BlockType.BUTTON,
@@ -651,6 +663,10 @@
       if (!(this.request.options.body instanceof FormData)) return;
       const name = Cast.toString(args.name);
       this.request.body.delete(name);
+    }
+
+    encodeURIcomp(args) {
+      return encodeURIComponent(args.urii);
     }
 
     // eslint-disable-next-line require-await
